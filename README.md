@@ -2,6 +2,7 @@ Nama = Go Nadine Audelia
 NPM = 2406348774
 
 REFLECTION 1
+
 Saya telah membuat fitur Create, Read, Edit, dan Delete dengan menerapkan prinsip clean code. Untuk menerapkan clean kode saya berusaha menggunakan nama variabel, method, dan class yang jelas dan tidak membingungkan agar kode mudah dibaca. Saya juga membuat agar setiap method hanya punya satu tugas saja. Selain itu, saya juga meletakkan file ke dalam bagian folder masing-masing agar letak penyimpanan file lebih rapi. Selama mengerjakan dengan melihat source code, saya merasa ada aspek yang bisa diimprove misalnya implementasi input validasi dan error handling.
 
 REFLECTION 2
