@@ -66,4 +66,53 @@ class ProductRepositoryTest {
         assertEquals(product2.getProductId(), savedProduct.getProductId());
         assertFalse(productIterator.hasNext());
     }
+
+    @Test
+    void testEditProductPositive() {
+        Product product = new Product();
+        product.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        product.setProductName("Sampo Cap Bambang");
+        product.setProductQuantity(100);
+        productRepository.create(product);
+        Product updatedProduct = new Product();
+        updatedProduct.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        updatedProduct.setProductName("Sampo Cap Bambang Baru");
+        updatedProduct.setProductQuantity(200);
+        productRepository.update(updatedProduct);
+        Product result = productRepository.findById("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        assertEquals("Sampo Cap Bambang Baru", result.getProductName());
+        assertEquals(200, result.getProductQuantity());
+    }
+    
+    @Test
+    void testEditProductNegative() {
+        Product product = new Product();
+        product.setProductId("non-existent-id");
+        product.setProductName("Produk palsu");
+        product.setProductQuantity(10);
+        productRepository.update(product);
+        Product result = productRepository.findById("non-existent-id");
+        assertNull(result);
+    }
+
+    @Test
+    void testDeleteProductPositive() {
+        Product product = new Product();
+        product.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        productRepository.create(product);
+        productRepository.delete("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        Product result = productRepository.findById("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        assertNull(result);
+    }
+
+    @Test
+    void testDeleteProductNegative() {
+        Product product = new Product();
+        product.setProductId("real-id");
+        product.setProductName("Produk ada");
+        productRepository.create(product);
+        productRepository.delete("wrong-id");
+        Product result = productRepository.findById("real-id");
+        assertNotNull(result);
+    }
 }
